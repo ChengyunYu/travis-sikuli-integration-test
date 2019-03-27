@@ -18,4 +18,5 @@ before_script:
   - xvfb-run java -jar sikulixsetup-1.1.3.jar options 1.1
 
 script:
+  - ls
   - sudo ~/sikulix/runsikulix -r ~/Desktop/SikulixRegressionScripts/MultiTenantAPP.sikuli
