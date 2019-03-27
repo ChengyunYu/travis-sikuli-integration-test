@@ -5,3 +5,4 @@ go:
 
 after_success:
   - echo "success"
+  - sudo ~/sikulix/runsikulix -r ~/Desktop/SikulixRegressionScripts/API.sikuli
