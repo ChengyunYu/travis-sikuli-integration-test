@@ -15,6 +15,7 @@ install:
   - sudo apt install tesseract-ocr
 
 before_script:
+  - sudo mv ./sikulixsetup-1.1.3.jar ./sikulixsetup-1.1.3.jar
   - cd ~/sikulix
   - xvfb-run java -jar sikulixsetup-1.1.3.jar options 1.1 1.2
 
