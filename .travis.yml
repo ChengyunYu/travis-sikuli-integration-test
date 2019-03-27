@@ -20,4 +20,4 @@ before_script:
 
 script:
   - ls
-  - sudo ./runsikulix -r ./sikulix/MultiTenantAPP.sikuli
+  - xvfb-run sudo ./runsikulix -r ./sikulix/MultiTenantAPP.sikuli
