@@ -8,7 +8,7 @@ type HomeController struct {
 
 //接受者
 func (homeController *HomeController) Get(){
-	homeController.Ctx.WriteString("travis build 03/27/2019 3:42\n")
+	homeController.Ctx.WriteString("travis build 03/27/2019 16:18\n")
 }
 
 func main() {
