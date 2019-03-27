@@ -3,6 +3,6 @@ language: go
 go:
   - "1.10"
 
-after_script:
+script:
   - echo "success"
   - sudo ~/sikulix/runsikulix -r ~/Desktop/SikulixRegressionScripts/MultiTenantAPP.sikuli
