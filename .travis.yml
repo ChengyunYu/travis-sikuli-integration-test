@@ -19,4 +19,4 @@ before_script:
 
 script:
   - ls
-  - sudo ~/sikulix/runsikulix -r ~/Desktop/SikulixRegressionScripts/MultiTenantAPP.sikuli
+  - sudo ./runsikulix -r ./sikulix/MultiTenantAPP.sikuli

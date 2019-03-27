@@ -1,0 +1,509 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>RealAuth.sikuli</h2> <a href="RealAuth.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">def</span> openWindow():
+    english = <img src="1552467984904.png" />
+    chinese = <img src="1552468022912.png" />
+    newWindow = <img src="1552467346544.png" />
+    mpLogo = <img src="mpLogo.png" />
+
+    openApp(<span class="str">"Google Chrome"</span>)
+    <span class="skw">click</span>(newWindow)
+    <span class="skw">type</span>(<span class="str">"http://marketplace.9.112.244.252.nip.io/"</span> + Key.ENTER)
+    <span class="kw">if</span> exists(english):
+        <span class="skw">click</span>(english)
+        <span class="skw">click</span>(chinese)
+        waitVanish(english)
+
+<span class="kw">def</span> closeWindow():
+    closeRegion = <img src="closeRegion.png" />
+    closeButton = <img src="closeButton.png" />
+    <span class="skw">find</span>(closeRegion).<span class="skw">click</span>(closeButton)
+
+
+<span class="kw">def</span> tripleClick(img):
+    <span class="skw">click</span>(img)
+    mouseDown(Button.LEFT)
+    mouseUp(Button.LEFT)
+    <span class="skw">wait</span>(<span class="dig">0.01</span>)
+    mouseDown(Button.LEFT)
+    mouseUp(Button.LEFT)
+
+<span class="kw">def</span> loginUser(account, accountPic, password):
+    loginRegion = Pattern(<img src="loginRegion.png" />).targetOffset(<span class="dig">174</span>,<span class="dig">2</span>)
+    loginButton = <img src="loginButton.png" />
+    emailLabel = <img src="1552375840350.png" />
+    emailInput = <img src="1552375548089.png" />
+    passwordLabel = <img src="1552375967992.png" />
+    passwordInput = <img src="passwordInput.png" />
+
+    logOutUser(accountPic)
+    logOutUser(euPic)
+    logOutUser(oaPic)
+
+    <span class="skw">wait</span>(loginRegion)
+
+    <span class="skw">find</span>(loginRegion).<span class="skw">click</span>(loginRegion)
+    <span class="skw">find</span>(emailLabel)
+    tripleClick(emailInput)
+    <span class="skw">type</span>(Key.BACKSPACE)
+    <span class="skw">type</span>(account)
+    <span class="skw">click</span>(emailLabel)
+    <span class="skw">find</span>(passwordLabel)
+    tripleClick(passwordInput)
+    <span class="skw">type</span>(Key.BACKSPACE)
+    <span class="skw">type</span>(password)
+    <span class="skw">click</span>(loginButton)
+
+    <span class="skw">wait</span>(accountPic, <span class="dig">100</span>)
+
+<span class="kw">def</span> logOutUser(accountPic):
+    loginRegion = <img src="loginRegion.png" />
+    logOutButton = <img src="logOutButton.png" />
+    <span class="kw">if</span> exists(accountPic):
+        hover(accountPic)
+        <span class="skw">click</span>(logOutButton)
+        <span class="skw">wait</span>(loginRegion, <span class="dig">10</span>)
+        hover(loginRegion)
+    <span class="kw">return</span>
+
+<span class="kw">def</span> addEU(adminPic, euPic, euAcc, euDN):
+    userPanelButton = <img src="1552472947955.png" />
+    addEUButton = <img src="addEUButton.png" />
+    searchBar = <img src="1552473438288.png" />
+    addButton = <img src="1552473683952.png" />
+    submitButton = <img src="1552473812817.png" />
+    successLogo = <img src="1552472809217.png" />
+    hover(adminPic)
+    <span class="skw">click</span>(userPanelButton)
+    <span class="skw">click</span>(addEUButton)
+    <span class="skw">click</span>(searchBar)
+    <span class="skw">type</span>(euAcc)
+    <span class="skw">wait</span>(euDN, <span class="dig">100</span>)
+    <span class="skw">click</span>(addButton)
+    <span class="skw">click</span>(submitButton)
+    <span class="skw">wait</span>(successLogo, <span class="dig">100</span>)
+    <span class="skw">wait</span>(<span class="dig">5</span>)
+
+<span class="kw">def</span> initRealName(euPic, orgName):
+    realNameButton = <img src="1552477685569.png" />
+    realNameLabel = <img src="realNameLabel.png" />
+    nameLabel = <img src="nameLabel.png" />
+    nameInput = <img src="nameInptu.png" />
+    nicknameLabel = <img src="nicknameLabel.png" />
+    nicknameInput = <img src="nicknameInput.png" />
+    addPicLabel =  <img src="addPicLabel.png" />
+    picLabel = <img src="picLabel.png" />
+    uploadButton = <img src="1552478075360.png" />
+    preview = <img src="1552478129993.png" />
+    submitButton = <img src="submitButton.png" />
+    successLogo = <img src="1552472809217.png" />
+    <span class="skw">wait</span>(euPic, <span class="dig">100</span>)
+    hover(euPic)
+    <span class="skw">click</span>(realNameButton)
+    <span class="skw">wait</span>(realNameLabel, <span class="dig">100</span>).hover(realNameLabel)
+    <span class="skw">click</span>(nameInput)
+    <span class="skw">type</span>(orgName)
+    <span class="skw">click</span>(nicknameInput)
+    <span class="skw">type</span>(orgName)
+    <span class="skw">click</span>(addPicLabel)
+    <span class="skw">wait</span>(picLabel, <span class="dig">100</span>)
+    <span class="skw">click</span>(picLabel)
+    <span class="skw">click</span>(uploadButton)
+    <span class="skw">wait</span>(preview, <span class="dig">100</span>)
+    <span class="skw">click</span>(submitButton)
+    <span class="skw">wait</span>(successLogo, <span class="dig">100</span>)
+    <span class="skw">wait</span>(<span class="dig">5</span>)
+
+<span class="kw">def</span> assignOA(adminPic, oaAcc, oaDN, orgName):
+    userPanelButton = <img src="1552472947955.png" />
+    userLabel = <img src="userLogo.png" />
+    sidebarToggle = <img src="sidebarToggle.png" />
+    oaButton = <img src="OAButton.png" />
+    addOaButton = <img src="addOAButton.png" />
+    searchBar = <img src="searchBar.png" />
+    editButton = <img src="editButton.png" />
+    editLabel = <img src="1552479456083.png" />
+    addOrgButton = <img src="1552479482853.png" />
+    orgSearchBar = <img src="1552480475900.png" />
+    assignButton = <img src="1552479563217.png" />
+    submitbutton = <img src="1552479611376.png" />
+    confirmButton = <img src="1552479645306.png" />
+    successLogo = <img src="1552472809217.png" />
+    hover(oaPic)
+    <span class="skw">wait</span>(userLabel, <span class="dig">100</span>).hover(userLabel)
+    <span class="skw">click</span>(userPanelButton)
+    <span class="kw">if</span> <span class="kw">not</span> exists(oaButton):
+        <span class="skw">click</span>(sidebarToggle)
+    <span class="skw">click</span>(oaButton)
+    <span class="skw">wait</span>(addOaButton, <span class="dig">100</span>)
+    <span class="skw">click</span>(searchBar)
+    <span class="skw">type</span>(oaAcc)
+    <span class="skw">wait</span>(oaDN, <span class="dig">100</span>)
+    <span class="skw">click</span>(editButton)
+    <span class="skw">wait</span>(editLabel, <span class="dig">100</span>)
+    <span class="skw">click</span>(addOrgButton)
+    <span class="skw">click</span>(orgSearchBar)
+    <span class="skw">type</span>(orgName + Key.ENTER)
+    <span class="skw">click</span>(assignButton)
+    <span class="skw">click</span>(submitbutton)
+    <span class="skw">click</span>(confirmButton)
+    <span class="skw">wait</span>(successLogo, <span class="dig">100</span>)
+    <span class="skw">wait</span>(<span class="dig">5</span>)
+
+<span class="kw">def</span> authRealName(oaPic, euAcc):
+    realNameButton = <img src="1552472947955.png" />
+    realNameLabel = <img src="1552481470141.png" />
+    searchBar = <img src="1552473438288.png" />
+    authButton = <img src="1552481600080.png" />
+    agreeRadio = <img src="agreeRadio.png" />
+    submitButton = <img src="1552479645306.png" />
+    successLogo = <img src="1552472809217.png" />
+
+    hover(oaPic)
+    <span class="skw">click</span>(realNameButton)
+    <span class="skw">wait</span>(realNameLabel, <span class="dig">100</span>)
+    <span class="skw">wait</span>(authButton, <span class="dig">100</span>).<span class="skw">click</span>(authButton)
+    <span class="skw">wait</span>(agreeRadio, <span class="dig">100</span>).<span class="skw">click</span>(agreeRadio)
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">type</span>(Key.PAGE_DOWN)
+    <span class="skw">click</span>(submitButton)
+    <span class="skw">wait</span>(successLogo, <span class="dig">1000</span>)
+    <span class="skw">wait</span>(<span class="dig">5</span>)
+
+<span class="kw">def</span> checkRealAuth(euPic):
+    realNameButton = <img src="1552477685569.png" />
+    realNameLabel = <img src="realNameLabel.png" />
+    successLabel = <img src="successLabel.png" />
+
+    <span class="skw">wait</span>(euPic, <span class="dig">100</span>)
+    hover(euPic)
+    <span class="skw">click</span>(realNameButton)
+    <span class="skw">wait</span>(realNameLabel, <span class="dig">100</span>).hover(realNameLabel)
+    hover(successLabel)
+
+<span class="kw">def</span> removeEu(adminPic, euPic, euAcc):
+    userPanelButton = <img src="1552472947955.png" />
+    euLabel = <img src="euLabel.png" />
+    searchBar = <img src="searchBar.png" />
+    deleteButton = <img src="deleteButton.png" />
+    deleteLogo = <img src="1552545227439.png" />
+    confirmButton = <img src="1552545301899.png" />
+    successLogo = <img src="1552472809217.png" />
+    hover(adminPic)
+    <span class="skw">click</span>(userPanelButton)
+    <span class="skw">wait</span>(euLabel, <span class="dig">100</span>)
+    <span class="skw">click</span>(searchBar)
+    <span class="skw">type</span>(euAcc)
+    <span class="skw">wait</span>(euPic, <span class="dig">100</span>)
+    <span class="skw">click</span>(deleteButton)
+    <span class="skw">wait</span>(deleteLogo, <span class="dig">100</span>)
+    <span class="skw">click</span>(confirmButton)
+    <span class="skw">wait</span>(successLogo, <span class="dig">500</span>)
+    <span class="skw">wait</span>(<span class="dig">5</span>)
+
+<span class="kw">def</span> publishApp(euPic, appName, deployName, testUserAcc, password):
+    publishButton = <img src="publishButton.png" />
+    bufferRegion = <img src="1552556465539.png" />
+    appRegion = Pattern(<img src="1552556295585.png" />).targetOffset(-<span class="dig">6</span>,<span class="dig">113</span>)
+    appBar = <img src="appBar.png" />
+    appNameInput = <img src="appNameInput.png" />
+    deployNameInput = <img src="deployNameInput.png" />
+    labelSelector = <img src="labelSelector.png" />
+    label = <img src="1552557837570.png" />
+    passwordRegion = <img src="passwordRegion.png" />
+    accRegion = <img src="accRegion.png" />
+    nextStepButton = <img src="1552558428940.png" />
+    nextStepButtonInter = Pattern(<img src="1552558470804.png" />).targetOffset(<span class="dig">41</span>,<span class="dig">5</span>)
+    uploadRegion = Pattern(<img src="uploadRegion.png" />).targetOffset(-<span class="dig">11</span>,-<span class="dig">11</span>)
+    uploadButton = <img src="uploadButton.png" />
+    jsonFile = <img src="jsonFile.png" />
+    uploadButton = <img src="1552478075360.png" />
+    appGraph = <img src="appGraph.png" />
+    testDeployButton = <img src="1552562215493.png" />
+    successMessage = <img src="1552562632722.png" />
+    newWindow = <img src="1552467346544.png" />
+    appSignIn = Pattern(<img src="1552562778780.png" />).targetOffset(<span class="dig">60</span>,<span class="dig">3</span>)
+    appSignInButton = Pattern(<img src="1552562850039.png" />).targetOffset(-<span class="dig">52</span>,<span class="dig">2</span>)
+    signInSuccess = Pattern(<img src="signInSuccess.png" />).targetOffset(<span class="dig">43</span>,<span class="dig">2</span>)
+    finalStep = <img src="finalStep.png" />
+    confirmButton = <img src="confirmButton.png" />
+    appAddress = <span class="str">"http://9.112.249.90/productpage-autotestorg-test/productpage"</span>
+    hover(euPic)
+    <span class="skw">click</span>(publishButton)
+    hover(bufferRegion)
+    <span class="skw">wait</span>(appRegion, <span class="dig">100</span>).<span class="skw">click</span>(appRegion)
+    <span class="skw">wait</span>(appBar, <span class="dig">100</span>)
+    <span class="skw">click</span>(appNameInput)
+    <span class="skw">type</span>(appName)
+    <span class="skw">click</span>(deployNameInput)
+    <span class="skw">type</span>(deployName)
+    <span class="skw">click</span>(labelSelector)
+    <span class="skw">click</span>(label)
+    <span class="skw">click</span>(passwordRegion)
+    <span class="skw">type</span>(password)
+    <span class="skw">click</span>(accRegion)
+    <span class="skw">type</span>(testUserAcc)
+    <span class="skw">click</span>(nextStepButton)
+    <span class="skw">wait</span>(<span class="dig">5</span>)
+    <span class="skw">click</span>(nextStepButtonInter)
+    <span class="skw">wait</span>(<span class="dig">10</span>)
+    <span class="skw">find</span>(uploadRegion)
+    hover(uploadRegion)
+    <span class="skw">click</span>(uploadRegion)
+    <span class="skw">click</span>(jsonFile)
+    <span class="skw">click</span>(uploadButton)
+    <span class="skw">wait</span>(appGraph, <span class="dig">100</span>).hover(appGraph)
+    <span class="skw">click</span>(testDeployButton)
+    <span class="skw">wait</span>(successMessage, <span class="dig">1000</span>)
+    <span class="skw">click</span>(newWindow)
+    <span class="skw">type</span>(appAddress + Key.ENTER)
+    <span class="skw">wait</span>(<span class="dig">5</span>)
+    <span class="skw">click</span>(appSignIn)
+    <span class="skw">click</span>(appSignInButton)
+    <span class="skw">wait</span>(signInSuccess, <span class="dig">20</span>).hover(signInSuccess)
+    closeWindow()
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">click</span>(finalStep)
+    <span class="skw">click</span>(confirmButton)
+
+
+<span class="kw">def</span> publishApi(euPic, apiName, testUserAcc, password):
+    publishButton = Pattern(<img src="publishButton.png" />).targetOffset(-<span class="dig">22</span>,-<span class="dig">3</span>)
+    bufferRegion = <img src="1552556465539.png" />
+    apiButton = Pattern(<img src="1552909632645.png" />).targetOffset(-<span class="dig">3</span>,<span class="dig">124</span>)
+    titleInput = <img src="titleInput.png" />
+    nameInput = <img src="nameInput.png" />
+    labelSelector = <img src="labelSelector.png" />
+    label = <img src="1552557837570.png" />
+    uploadPanel = <img src="1552910250776.png" />
+    picLabel = <img src="picLabel.png" />
+    uploadButton = <img src="1552478075360.png" />
+    nextStepButton = <img src="1552558428940.png" />
+    hover(euPic)
+    <span class="skw">click</span>(publishButton)
+    hover(bufferRegion)
+    <span class="skw">click</span>(apiButton)
+    <span class="skw">wait</span>(titleInput)
+    <span class="skw">click</span>(titleInput)
+    <span class="skw">type</span>(apiName)
+    <span class="skw">click</span>(nameInput)
+    <span class="skw">type</span>(apiName)
+    <span class="skw">click</span>(labelSelector)
+    <span class="skw">click</span>(label)
+    <span class="skw">click</span>(uploadPanel)
+    <span class="skw">click</span>(picLabel)
+    <span class="skw">click</span>(uploadButton)
+    <span class="skw">click</span>(nextStepButton)
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+
+<span class="kw">def</span> setApiBasicInfo(yamlTitle, apiVersion):
+    newYamlButton = <img src="newYamlButton.png" />
+    titleInput = Pattern(<img src="titleInput.png" />).targetOffset(-<span class="dig">17</span>,<span class="dig">3</span>)
+    nameInput = <img src="nameInput.png" />
+    versionInput = Pattern(<img src="versionInput.png" />).targetOffset(-<span class="dig">39</span>,<span class="dig">0</span>)
+    basicPathInput = Pattern(<img src="basicPathInput.png" />).targetOffset(<span class="dig">4</span>,-<span class="dig">4</span>)
+    pathPanel = <img src="pathPanel.png" />
+    <span class="skw">click</span>(newYamlButton)
+    <span class="skw">click</span>(titleInput)
+    <span class="skw">type</span>(yamlTitle)
+    <span class="skw">click</span>(nameInput)
+    <span class="skw">type</span>(yamlTitle)
+    <span class="skw">click</span>(versionInput)
+    <span class="skw">type</span>(apiVersion)
+    <span class="skw">click</span>(basicPathInput)
+    <span class="skw">type</span>(<span class="str">"tag1"</span>)
+    <span class="skw">click</span>(pathPanel)
+
+<span class="kw">def</span> setApiPath():
+    newPathButton = Pattern(<img src="newPathButton.png" />).targetOffset(<span class="dig">62</span>,<span class="dig">25</span>)
+    pathNameInput = <img src="pathNameInput.png" />
+    getOpButton = <img src="getOpButton.png" />
+    newResponseButton = Pattern(<img src="newResponseButton.png" />).targetOffset(<span class="dig">14</span>,<span class="dig">51</span>)
+    responseNumberInput = <img src="1552912480541.png" />
+    responseTypeSelect = <img src="responseTypeSelect.png" />
+    stringOption = <img src="1552912557249.png" />
+    responseDescriptionInput = <img src="1552912593236.png" />
+    saveResponseButton = <img src="1552912673823.png" />
+    saveOpButton = Pattern(<img src="saveOpButton.png" />).targetOffset(<span class="dig">13</span>,-<span class="dig">203</span>)
+    savePathButton = Pattern(<img src="savePathButton.png" />).targetOffset(<span class="dig">15</span>,-<span class="dig">24</span>)
+    foldButton = Pattern(<img src="foldButton.png" />).targetOffset(<span class="dig">5</span>,-<span class="dig">2</span>)
+    foldPathButton = Pattern(<img src="foldPathButton.png" />).targetOffset(<span class="dig">49</span>,-<span class="dig">12</span>)
+    secButton = <img src="1552914523976.png" />
+    stringOptionDown = Pattern(<img src="stringOptionDown.png" />).targetOffset(-<span class="dig">13</span>,<span class="dig">29</span>)
+    saveOpButton2 = Pattern(<img src="savePathButton2.png" />).targetOffset(<span class="dig">44</span>,-<span class="dig">5</span>)
+    <span class="skw">wait</span>(<span class="dig">5</span>)
+    <span class="skw">click</span>(newPathButton)
+    <span class="skw">click</span>(pathNameInput)
+    <span class="skw">type</span>(<span class="str">"/tag1"</span>)
+    <span class="skw">click</span>(getOpButton)
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">click</span>(newResponseButton)
+    <span class="skw">type</span>(Key.PAGE_DOWN)
+    <span class="skw">click</span>(responseNumberInput)
+    <span class="skw">type</span>(<span class="str">"200"</span>)
+    <span class="skw">click</span>(responseTypeSelect)
+    <span class="skw">click</span>(stringOption)
+    <span class="skw">click</span>(responseDescriptionInput)
+    <span class="skw">type</span>(<span class="str">"successful"</span>)
+    <span class="skw">click</span>(saveResponseButton)
+    <span class="skw">click</span>(saveOpButton)
+    <span class="skw">click</span>(foldButton)
+    <span class="skw">click</span>(savePathButton)
+    <span class="skw">click</span>(foldPathButton)
+    <span class="skw">wait</span>(<span class="dig">5</span>)
+    <span class="skw">click</span>(newPathButton)
+    <span class="skw">click</span>(pathNameInput)
+    <span class="skw">type</span>(<span class="str">"/tag2"</span>)
+    <span class="skw">click</span>(getOpButton)
+    <span class="skw">type</span>(Key.PAGE_DOWN)
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">type</span>(Key.PAGE_DOWN)
+    <span class="skw">click</span>(newResponseButton)
+    <span class="skw">type</span>(Key.PAGE_DOWN)
+    <span class="skw">click</span>(responseNumberInput)
+    <span class="skw">type</span>(<span class="str">"200"</span>)
+    <span class="skw">click</span>(responseTypeSelect)
+    <span class="skw">click</span>(stringOptionDown)
+    <span class="skw">click</span>(responseDescriptionInput)
+    <span class="skw">type</span>(<span class="str">"successful"</span>)
+    <span class="skw">click</span>(saveResponseButton)
+    <span class="skw">type</span>(Key.PAGE_UP)
+    <span class="skw">click</span>(saveOpButton2)
+    <span class="skw">click</span>(foldButton)
+    <span class="skw">click</span>(savePathButton)
+    <span class="skw">click</span>(foldPathButton)
+    <span class="skw">click</span>(secButton)
+
+
+<span class="kw">def</span> setApiSec():
+    newSecButton = Pattern(<img src="1552989716190.png" />).targetOffset(<span class="dig">38</span>,<span class="dig">33</span>)
+    <span class="skw">click</span>(newSecButton)
+
+adminAcc = <span class="str">"cdlcloudadmin@cn.ibm.com"</span>
+adminPic = <img src="1552467393989.png" />
+euAcc = <span class="str">"autotesteu@cn.ibm.com"</span>
+euPic = <img src="euPic.png" />
+euDN = <img src="euDN.png" />
+password = <span class="str">"passw0rd"</span>
+oaAcc = <span class="str">"autotestoa@cn.ibm.com"</span>
+oaPic = <img src="1552986271289.png" />
+oaDN = <img src="oaDN.png" />
+orgName = <span class="str">"autotestorg"</span>
+appName = <span class="str">"testappl"</span>
+deployName = <span class="str">"testdepl"</span>
+apiName = <span class="str">"testapie"</span>
+yamlTitle = <span class="str">"tagtest"</span>
+apiVersion = <span class="str">"1.0.0"</span>
+testUserAcc = <span class="str">"testuser"</span>
+
+openWindow()
+
+<span class="cmt">#loginUser(adminAcc, adminPic, password)</span>
+<span class="cmt">#addEU(adminPic, euPic, euAcc, euDN)</span>
+<span class="cmt">#logOutUser(adminPic)</span>
+
+<span class="cmt">#loginUser(euAcc, euPic, password)</span>
+<span class="cmt">#initRealName(euPic, orgName)</span>
+<span class="cmt">#logOutUser(euPic)</span>
+
+<span class="cmt">#loginUser(adminAcc, adminPic, password)</span>
+<span class="cmt">#assignOA(adminPic, oaAcc, oaDN, orgName)</span>
+<span class="cmt">#logOutUser(adminPic)</span>
+
+<span class="cmt">#loginUser(oaAcc, oaPic, password)</span>
+<span class="cmt">#authRealName(oaPic, euAcc)</span>
+<span class="cmt">#logOutUser(oaPic)</span>
+
+<span class="cmt">#loginUser(euAcc, euPic, password)</span>
+<span class="cmt">#checkRealAuth(euPic)</span>
+<span class="cmt">#logOutUser(euPic)</span>
+
+<span class="cmt">#loginUser(euAcc, euPic, password)</span>
+<span class="cmt">#publishApp(euPic, appName, deployName, testUserAcc, password)</span>
+<span class="cmt">#logOutUser(euPic)</span>
+
+<span class="cmt">#loginUser(adminAcc, adminPic, password)</span>
+<span class="cmt">#removeEu(adminPic, euPic, euAcc)</span>
+<span class="cmt">#logOutUser(adminPic)</span>
+
+loginUser(euAcc, euPic, password)
+publishApi(euPic, apiName, testUserAcc, password)
+setApiBasicInfo(yamlTitle, apiVersion)
+setApiPath()
+setApiSec()
+
+<span class="cmt">#closeWindow()</span>
+
+</pre>
+</body>
+</html>
