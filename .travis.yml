@@ -1,5 +1,7 @@
 language: go
 
+os: osx
+
 addons:
   chrome: stable
 
@@ -8,14 +10,6 @@ go:
 
 services:
   - xvfb
-
-before_install:
-  - sudo apt-get update
-
-install:
-  - sudo apt-get update
-  - sudo apt install libopencv-dev
-  - sudo apt install tesseract-ocr
 
 before_script:
   - export DISPLAY=:0
