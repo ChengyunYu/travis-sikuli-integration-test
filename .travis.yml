@@ -1,5 +1,8 @@
 language: go
 
+jdk:
+  - openjdk7
+
 os: osx
 
 addons:
@@ -14,4 +17,4 @@ before_script:
 
 script:
   - ls
-  - sudo ./runsikulix -r ./sikulix/MultiTenantAPP.sikuli
+  - xvfb-run sudo ./runsikulix -r ./sikulix/MultiTenantAPP.sikuli
