@@ -6,7 +6,13 @@ go:
   - "1.10"
 
 install:
-  - brew install google-chrome
+  - brew update                       # Fetch latest version of homebrew and formula.
+  - brew tap caskroom/cask            # Tap the Caskroom/Cask repository from Github using HTTPS.
+  - brew search google                # Searches all known Casks for a partial or exact match.
+  - brew search google-chrome         # Searches all known Casks for a partial or exact match.
+  - brew cask info google-chrome      # Displays information about the given Cask
+  - brew cask install google-chrome   # Install the given cask.
+  - brew cleanup
 
 before_script:
   - export DISPLAY=:0
