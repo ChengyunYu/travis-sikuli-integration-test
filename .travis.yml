@@ -1,15 +1,12 @@
-language: java
-
-jdk:
-  - oraclejdk7
+language: go
 
 os: osx
 
-addons:
-  chrome: stable
-
 go:
   - "1.10"
+
+install:
+  - brew install google-chrome
 
 before_script:
   - export DISPLAY=:0
