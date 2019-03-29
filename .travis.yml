@@ -11,4 +11,4 @@ install:
 
 script:
   - curl -X POST 9.112.232.82:8080/job/Sikulix%20UI/build --user admin:1122751ed9cd3cea8707ddbd0404c5e41f
-  - curl -X 9.112.232.82:8080/job/Sikulix%20UI/lastBuild/consoleText --user admin:1122751ed9cd3cea8707ddbd0404c5e41f
+  - curl 9.112.232.82:8080/job/Sikulix%20UI/lastBuild/consoleText --user admin:1122751ed9cd3cea8707ddbd0404c5e41f
