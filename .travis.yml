@@ -11,5 +11,6 @@ install:
   - sudo apt-get install curl
 
 script:
-  - curl -X POST http://9.112.232.82:8080/job/Sikulix%20UI/build --user admin:1122751ed9cd3cea8707ddbd0404c5e41f
+  # curl -H "Accept: application/xml" -H "Content-Type: application/xml" -X POST http://9.112.232.82:8080/job/Sikulix%20UI/build --user admin:1122751ed9cd3cea8707ddbd0404c5e41f
+  - "curl -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X POST http://9.112.232.82:8080/job/Sikulix%20UI/build --user admin:1122751ed9cd3cea8707ddbd0404c5e41f"
   - curl http://9.112.232.82:8080/job/Sikulix%20UI/lastBuild/consoleText --user admin:1122751ed9cd3cea8707ddbd0404c5e41f
